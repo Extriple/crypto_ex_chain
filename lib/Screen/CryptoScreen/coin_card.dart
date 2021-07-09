@@ -1,7 +1,6 @@
-import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto_details.dart';
 import 'package:flutter/material.dart';
 
-class CoinCard extends StatelessWidget {
+class CoinCard extends StatefulWidget {
   CoinCard({
     this.id,
     @required this.name,
@@ -20,6 +19,11 @@ class CoinCard extends StatelessWidget {
   double change;
   double changePercentage;
 
+  @override
+  _CoinCardState createState() => _CoinCardState();
+}
+
+class _CoinCardState extends State<CoinCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -71,7 +75,7 @@ class CoinCard extends StatelessWidget {
                   width: 60,
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Image.network(imageUrl),
+                    child: Image.network(widget.imageUrl),
                   ),
                 ),
               ),
@@ -84,7 +88,7 @@ class CoinCard extends StatelessWidget {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          name,
+                          widget.name,
                           style: TextStyle(
                             color: Colors.grey[900],
                             fontSize: 25,
@@ -93,7 +97,7 @@ class CoinCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        symbol,
+                        widget.symbol,
                         style: TextStyle(
                           color: Colors.grey[900],
                           fontSize: 20,
@@ -110,7 +114,7 @@ class CoinCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      price.toDouble().toString(),
+                      widget.price.toDouble().toString(),
                       style: TextStyle(
                         color: Colors.grey[900],
                         fontSize: 20,
@@ -118,22 +122,25 @@ class CoinCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      change.toDouble() < 0
-                          ? change.toDouble().toString()
-                          : '+' + change.toDouble().toString(),
+                      widget.change.toDouble() < 0
+                          ? widget.change.toDouble().toString()
+                          : '+' + widget.change.toDouble().toString(),
                       style: TextStyle(
-                        color:
-                            change.toDouble() < 0 ? Colors.red : Colors.green,
+                        color: widget.change.toDouble() < 0
+                            ? Colors.red
+                            : Colors.green,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      changePercentage.toDouble() < 0
-                          ? changePercentage.toDouble().toString() + '%'
-                          : '+' + changePercentage.toDouble().toString() + '%',
+                      widget.changePercentage.toDouble() < 0
+                          ? widget.changePercentage.toDouble().toString() + '%'
+                          : '+' +
+                              widget.changePercentage.toDouble().toString() +
+                              '%',
                       style: TextStyle(
-                        color: changePercentage.toDouble() < 0
+                        color: widget.changePercentage.toDouble() < 0
                             ? Colors.red
                             : Colors.green,
                         fontSize: 18,

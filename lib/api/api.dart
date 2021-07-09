@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// ignore: missing_return
 Future<double> getPrice(String id) async {
   try {
     var url = "https://api.coingecko.com/api/v3/coins/" + id;

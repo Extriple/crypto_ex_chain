@@ -1,6 +1,7 @@
-import 'dart:ffi';
-
+import 'package:crypto_ex_chain/Screen/CryptoNewsScreen/news.dart';
+import 'package:crypto_ex_chain/Screen/FinanceProducts/finance_products_screen.dart';
 import 'package:crypto_ex_chain/Screen/Home.dart';
+import 'package:crypto_ex_chain/Screen/ProductsListHome.dart';
 import 'package:crypto_ex_chain/Screen/cart.dart';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto.dart';
 import 'package:crypto_ex_chain/Screen/search.dart';
@@ -40,7 +41,8 @@ class _TabScreenState extends State<TabScreen> {
       },
       {
         'page': UserScreen(),
-      }
+      },
+      {'page': ProductsListHome()}
     ];
     super.initState();
   }
@@ -84,6 +86,10 @@ class _TabScreenState extends State<TabScreen> {
                     icon: Icon(Icons.shopping_cart), label: 'Cart'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: 'User'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.toll_outlined), label: 'test'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.toll_outlined), label: 'test'),
               ],
             ),
           ),

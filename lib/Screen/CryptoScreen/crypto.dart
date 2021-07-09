@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/coin_card.dart';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto_details.dart';
@@ -45,7 +44,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
   @override
   void initState() {
     fetchCoin();
-    Timer.periodic(Duration(seconds: 10), (timer) => fetchCoin());
+    Timer.periodic(Duration(seconds: 30), (timer) => fetchCoin());
     super.initState();
   }
 
