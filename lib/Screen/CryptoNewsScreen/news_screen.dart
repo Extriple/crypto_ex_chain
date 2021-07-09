@@ -6,8 +6,8 @@ class NewsCard extends StatefulWidget {
     @required this.description,
   });
 
-   String title;
-   String description;
+  String title;
+  String description;
 
   @override
   _NewsCardState createState() => _NewsCardState();

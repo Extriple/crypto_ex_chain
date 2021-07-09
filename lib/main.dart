@@ -1,6 +1,8 @@
 import 'package:crypto_ex_chain/Screen/CryptoNewsScreen/news.dart';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto.dart';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto_details.dart';
+import 'package:crypto_ex_chain/Screen/DefiProducts/defi_products_screen.dart';
+import 'package:crypto_ex_chain/Screen/ExchangeList/exchange_list_screen.dart';
 import 'package:crypto_ex_chain/tab/tab.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,9 @@ class MyApp extends StatelessWidget {
         TabScreen.routeName: (ctx) => TabScreen(),
         CryptoScreen.routeName: (ctx) => CryptoScreen(),
         CryptoDetailsScreen.routeName: (ctx) => CryptoDetailsScreen(),
+        ExchangeListScreen.routeName: (ctx) => ExchangeListScreen(),
         NewsScreen.routeName: (ctx) => NewsScreen(),
+        DefiProductScreen.routeName: (ctx) => DefiProductScreen(),
       },
     );
   }

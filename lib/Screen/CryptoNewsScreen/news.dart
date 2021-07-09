@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
 import 'package:crypto_ex_chain/Screen/CryptoNewsScreen/news_screen.dart';
 import 'package:crypto_ex_chain/model/crypto_news.dart';
 import 'package:flutter/material.dart';
@@ -14,29 +15,26 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  List<CryptoNews> news = [];
+  final List<CryptoNews> item = [];
 
   Future<List<CryptoNews>> fetch() async {
-   final response = await http.get(Uri.parse('https://api.coingecko.com/api/v3/events'));
-   print(response.body);
-   List responseJson = json.decode(response.body.toString());
-   List<CryptoNews> newsTitle = createNewList(responseJson);
-   return newsTitle;
+    final http.Response response =
+        await http.get(Uri.parse('https://cryptopanic.com/api/v1/posts/?auth_token=5baf1671325bd65d5555bb27bf50af7570417ffa&public=true'),
+            headers:{HttpHeaders.authorizationHeader: '5baf1671325bd65d5555bb27bf50af7570417ffa'}
+            );
+    final Map<String, dynamic> responseData = json.decode(response.body);
+
+    print(responseData);
+    responseData['results'].forEach((newsDetails) {
+      final CryptoNews cryptoNews = CryptoNews(
+          title: newsDetails['title'],
+      );
+
+      setState(() {
+        item.add(cryptoNews);
+      });
+    });
   }
-
-  List<CryptoNews> createNewList(List data) {
-    List<CryptoNews> list = [];
-    for (int i = 0; i < data.length; i++) {
-      String title = data[i]['title'];
-      String description = data[i]['description'];
-
-      CryptoNews cryptoNews = new CryptoNews
-        (title: title, description: description);
-      list.add(cryptoNews);
-    }
-    return list;
-  }
-
 
   @override
   void initState() {
@@ -47,21 +45,31 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('adsad'),
-        ),
-        body: Container(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: news.length,
-            itemBuilder: (context, index) {
-              return NewsCard(
-                title: news[index].title,
-                description: news[index].description,
-              );
-            },
-          ),
-        )
+      appBar: AppBar(
+        title: Text('Crypto News'),
+      ),
+      body: ListView.builder(
+        itemCount: this.item.length,
+        itemBuilder: _listViewItemBuilder,
+      ),
     );
+  }
+
+  Widget _listViewItemBuilder(BuildContext context, int index) {
+    var newsDetail = this.item[index];
+    return ListTile(
+        contentPadding: EdgeInsets.all(10.0),
+        //leading: _itemThumbnail(newsDetail),
+        title: _itemTitle(newsDetail),
+
+        onTap: () {
+          // _navigationToNewsDetail(context, newsDetail);
+        });
+  }
+
+  void _navigationToNewsDetail(BuildContext context, CryptoNews newsDetail){
+  }
+  Widget _itemTitle(CryptoNews newsDetail) {
+    return Text(newsDetail.title);
   }
 }

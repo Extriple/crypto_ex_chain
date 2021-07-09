@@ -1,12 +1,11 @@
 import 'package:crypto_ex_chain/Screen/CryptoNewsScreen/news.dart';
-import 'package:crypto_ex_chain/Screen/FinanceProducts/finance_products_screen.dart';
 import 'package:crypto_ex_chain/Screen/Home.dart';
 import 'package:crypto_ex_chain/Screen/ProductsListHome.dart';
 import 'package:crypto_ex_chain/Screen/cart.dart';
 import 'package:crypto_ex_chain/Screen/CryptoScreen/crypto.dart';
 import 'package:crypto_ex_chain/Screen/search.dart';
 import 'package:crypto_ex_chain/Screen/shop.dart';
-import 'package:crypto_ex_chain/Screen/user.dart';
+import 'package:crypto_ex_chain/model/crypto_news.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {
@@ -40,7 +39,7 @@ class _TabScreenState extends State<TabScreen> {
         'page': CartScreen(),
       },
       {
-        'page': UserScreen(),
+        'page': NewsScreen(),
       },
       {'page': ProductsListHome()}
     ];
